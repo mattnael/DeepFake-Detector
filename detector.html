@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IsltReal | Detector</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="blob-bg"></div>
+    <div class="blob-bg blob-2"></div>
+    <nav class="navbar glass">
+        <div class="logo">Islt<span class="gradient-text">Real</span></div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="detector.html" class="active">Detector</a></li>
+            <li><a href="about.html">About Us</a></li>
+        </ul>
+    </nav>
+
+    <section class="page-content center-content fade-in-up">
+        <h1>Upload to <span class="gradient-text">Analyze</span></h1>
+        <p>Deploy our neural network to verify the authenticity of your media.</p>
+
+        <div class="upload-container glass-card">
+            <!-- Progressive enhancement: form posts directly to backend if JS is unavailable -->
+            <form action="/api/detect" method="POST" enctype="multipart/form-data" id="scanForm">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">⬆️</div>
+                    <p>Drag & Drop or Click to Upload</p>
+                    <input type="file" id="mediaUpload" name="mediaUpload" accept="image/*,video/*" required
+                        class="file-input-hidden" />
+                </div>
+                <div class="file-preview hidden" id="filePreview">
+                    <span id="fileName">No file selected</span>
+                </div>
+                <button type="submit" class="btn btn-primary glow-btn full-width" id="scanBtn">
+                    Initiate Scan
+                </button>
+            </form>
+            <div id="loader" class="hidden loader-container">
+                <div class="scanning-ring"></div>
+                <p class="pulsate text-gradient">Extracting forensic artifacts...</p>
+            </div>
+        </div>
+
+        <h2 class="section-title">
+            Media <span class="gradient-text">Classification</span>
+        </h2>
+        <p class="section-subtitle">
+            Our proprietary pipeline breaks down media frame by frame<br />to expose
+            the invisible.
+        </p>
+
+        <div class="classification-timeline">
+            <div class="timeline-item">
+                <div class="step-number marker-01">01</div>
+                <div class="timeline-content">
+                    <h3><span class="marker-label green">Definitely Real</span></h3>
+                    <p>
+                        "Definitely Real" Class appears when the Media that has been
+                        scanned has 0-100% Real Percentage and 0-20% Fake Percentage.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="step-number marker-02">02</div>
+                <div class="timeline-content">
+                    <h3><span class="marker-label green">Likely Real</span></h3>
+                    <p>
+                        "Likely Real" Class appears when the Media that has been scanned
+                        has 60-79% Real Percentage and 21-40% Fake Percentage.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="step-number marker-03">03</div>
+                <div class="timeline-content">
+                    <h3><span class="marker-label yellow">Ambiguous</span></h3>
+                    <p>
+                        "Ambiguous" Class appears when the Media that has been scanned has
+                        50-59% Real Percentage and 41-50% Fake Percentage.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="step-number marker-04">04</div>
+                <div class="timeline-content">
+                    <h3><span class="marker-label red">Likely Fake</span></h3>
+                    <p>
+                        "Likely Fake" Class appears when the Media that has been scanned
+                        has 21-40% Real Percentage and 60-79% Fake Percentage.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="step-number marker-05">05</div>
+                <div class="timeline-content">
+                    <h3><span class="marker-label red">Definitely Fake</span></h3>
+                    <p>
+                        "Definitely Fake" Class appears when the Media that has been
+                        scanned has 0-20% Real Percentage and 80-100% Fake Percentage.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="glass footer-bottom">
+        <p>&copy; 2026 IsltReal. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

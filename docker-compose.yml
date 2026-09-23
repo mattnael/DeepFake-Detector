@@ -1,0 +1,37 @@
+services:
+
+  # ── Python AI Service ─────────────────────────────────────────
+  python-ai:
+    build:
+      context: .
+      dockerfile: Dockerfile.python
+    container_name: deepfake-python
+    restart: unless-stopped
+    expose:
+      - "5000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:5000/health')"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+
+  # ── Node.js Web Server ────────────────────────────────────────
+  node-web:
+    build:
+      context: .
+      dockerfile: Dockerfile.node
+    container_name: deepfake-node
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - PYTHON_API_URL=http://python-ai:5000
+    depends_on:
+      python-ai:
+        condition: service_healthy
+    volumes:
+      - uploads_data:/app/uploads
+
+volumes:
+  uploads_data:

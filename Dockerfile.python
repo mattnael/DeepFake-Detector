@@ -1,0 +1,46 @@
+# ── Python AI Service ───────────────────────────────────────────
+# Using slim Python image (CPU-only torch to keep image small)
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Install system libraries needed by OpenCV & video processing
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libglib2.0-0 \
+    libsm6 \
+    libxext6 \
+    libxrender-dev \
+    libgl1 \
+    ffmpeg \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements first (layer cache)
+COPY requirements.txt .
+
+# Install CPU-only PyTorch (much smaller image — no CUDA needed for inference)
+RUN pip install --no-cache-dir torch torchvision --index-url https://download.pytorch.org/whl/cpu
+
+# Install the rest of the requirements
+RUN pip install --no-cache-dir \
+    ultralytics \
+    timm \
+    opencv-python-headless \
+    Pillow \
+    numpy \
+    pandas \
+    scikit-learn \
+    tqdm \
+    pyyaml \
+    flask
+
+# Copy source files
+COPY run_yolo.py .
+COPY utils/ utils/
+COPY model/ model/
+
+# Tiny Flask wrapper so Node.js can call Python over HTTP
+COPY python_api.py .
+
+EXPOSE 5000
+
+CMD ["python", "python_api.py"]

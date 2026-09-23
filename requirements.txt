@@ -1,0 +1,29 @@
+# Deepfake Detection Project Requirements
+
+# Core dependencies - IMPORTANT: Install with CUDA support for GPU training
+# For RTX 4050 (Ada Lovelace), use CUDA 11.8 or 12.x
+# Run: pip install torch torchvision --index-url https://download.pytorch.org/whl/cu118
+# OR: pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+torch>=1.9.0
+torchvision>=0.10.0
+numpy>=1.19.0
+opencv-python>=4.5.0
+Pillow>=8.0.0
+
+# For YOLO
+ultralytics>=8.0.0
+
+# For EfficientNet
+timm>=0.9.0
+
+# For data processing
+pandas>=1.3.0
+scikit-learn>=0.24.0
+
+# For utilities
+tqdm>=4.62.0
+pyyaml>=6.0
+
+# For visualization (optional)
+matplotlib>=3.4.0
+seaborn>=0.11.0

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IsltReal | Analysis Result</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="blob-bg"></div>
+    <div class="blob-bg blob-2"></div>
+    <nav class="navbar glass">
+        <div class="logo">Islt<span class="gradient-text">Real</span></div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="detector.html">Detector</a></li>
+            <li><a href="about.html">About Us</a></li>
+        </ul>
+    </nav>
+
+    <section class="page-content center-content fade-in-up">
+        <h1>Analysis <span class="gradient-text">Outcome</span></h1>
+        
+        <div class="result-card glass-card" id="resultCard">
+            <div class="result-content">
+                <div class="result-image">
+                    <img id="uploadedImage" src="" alt="Uploaded media" />
+                </div>
+                <div class="result-details">
+                    <h2>Authenticity Confidence</h2>
+                    <div class="verdict-badge" id="verdictBadge">
+                        <span id="verdictText">Analyzing...</span>
+                    </div>
+                    <div class="result-stats">
+                        <span id="realPercentage">--%</span> Real
+                        <span class="separator">|</span>
+                        <span id="fakePercentage">--%</span> Fake
+                    </div>
+                    <a href="detector.html" class="btn btn-primary">Scan Another Media</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="glass footer-bottom">
+        <p>&copy; 2026 IsltReal. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
